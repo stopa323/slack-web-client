@@ -8,6 +8,8 @@ const channel = core.getInput('slackChannel');
 const client = new WebClient(token);
 
 async function createBuildStatusMessage() {
+  console.log("Creating new Slack message");
+
   const result = await client.chat.postMessage({
     channel: channel,
     text: 'Build started'
@@ -17,7 +19,8 @@ async function createBuildStatusMessage() {
 }
 
 async function updateBuildStatusMessage() {
-  console.log(process.env.MESSAGE_TS)
+  console.log(`Updating Slack message: ${process.env.MESSAGE_TS}`);
+
   const result = await client.chat.update({
     channel: channel,
     ts: process.env.MESSAGE_TS,
@@ -28,12 +31,10 @@ async function updateBuildStatusMessage() {
 async function run() {
   try {
       const isUpdate = core.getInput("messageUpdate");
-      if (isUpdate) {
-        console.log("Performing message update");
+      if (isUpdate == "true") {
         await updateBuildStatusMessage();
       }
       else {
-        console.log("Creating CI status message");
         await createBuildStatusMessage();
       }
   }
