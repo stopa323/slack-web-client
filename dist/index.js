@@ -5897,6 +5897,7 @@ async function createBuildStatusMessage() {
     channel: channel,
     text: 'Build started'
   });
+  console.log(`Setting slackMessageTs to: ${result.ts}`);
   core.setOutput("slackMessageTs", result.ts);
 }
 
@@ -5912,11 +5913,12 @@ async function updateBuildStatusMessage() {
 async function run() {
   try {
       const isUpdate = core.getInput("messageUpdate");
-      console.log(isUpdate);
       if (isUpdate) {
+        console.log("Performing message update");
         await updateBuildStatusMessage();
       }
       else {
+        console.log("Creating CI status message");
         await createBuildStatusMessage();
       }
   }
