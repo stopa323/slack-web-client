@@ -5893,11 +5893,21 @@ const channel = core.getInput('slackChannel');
 const client = new WebClient(token);
 
 async function post() {
-  console.log(`post function`);
+  var ts = core.getState("message.ts");
+  const result = await client.chat.update({
+    channel: channel,
+    ts: ts,
+    text: 'updated you'
+  });
 }
 
 async function main() {
-  console.log(`main function`);
+  const result = await client.chat.postMessage({
+    channel: channel,
+    text: 'Build started'
+  });
+
+  core.saveState("message.ts", result.ts);
 }
 
 async function run() {
@@ -5917,11 +5927,6 @@ async function run() {
 }
 
 run();
-
-  // const result = await client.chat.postMessage({
-  //   channel: channel,
-  //   text: 'Build in progress',
-  // });
 
 
 /***/ }),
