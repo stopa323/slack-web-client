@@ -5911,7 +5911,7 @@ async function updateMessage(ts) {
 async function run() {
   try {
       var ts = process.env.MESSAGE_TS;
-      if ("" == ts) {
+      if ("failure" == ts) {
         await postMessage();
       }
       else {
