@@ -1,13 +1,11 @@
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: CI Slack Notify
+description: Post your build information to Slack.
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  slackBotToken:
+    description: TBD
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  slackChannel:
+    description: Name or ID of the channel where notification will be sent.
 runs:
   using: 'node12'
-  main: 'dist/index.js'
+  pre: 'dist/pre.js'
