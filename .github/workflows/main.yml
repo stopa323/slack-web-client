@@ -1,27 +1,36 @@
 on: [push]
 
 env:
-  STATE: failure
+  SLACK_MESSAGE_TS: ""
 
 jobs:
-  tests:
+  createSlackMessage:
+    name: Create CI status Slack message
     runs-on: ubuntu-latest
     steps:
-      - name: Slack notify - BEGIN
+      - name: Create message
         uses: stopa323/h8s-ci@tests
-        id: begin
+        id: create_message
         with:
           slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
           slackChannel: C01667Y1K8U
+      - name: Save message ts
+        run: echo '::set-env name=SLACK_MESSAGE_TS::$VAL'
+        env:
+          VAL: ${{ steps.create_message.outputs.slackMessageTs }}
+
+  runTests:
+    name: Run pytest
+    runs-on: ubuntu-latest
+    needs: [createSlackMessage]
+    steps:
       - name: UT step
         run: echo "Tests OK"
-      - name: Docker image build step
-        run: echo "Build OK"
-      - name: Slack notify - END
+      - name: Update message with status
         uses: stopa323/h8s-ci@tests
         with:
           slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
           slackChannel: C01667Y1K8U
           messageUpdate: true
         env:
-          MESSAGE_TS: ${{ steps.begin.outputs.slackMessageTs }}
+          MESSAGE_TS: ${{ SLACK_MESSAGE_TS }}
