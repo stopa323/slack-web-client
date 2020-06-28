@@ -5910,12 +5910,7 @@ async function post() {
 }
 
 async function main() {
-  var ts = core.getState("message.ts");
-  const result = await client.chat.update({
-    channel: channel,
-    ts: ts,
-    text: 'main'
-  });
+  console.log("I do nothing");
 }
 
 async function run() {

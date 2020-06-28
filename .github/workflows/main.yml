@@ -1,15 +1,25 @@
 on: [push]
 
 jobs:
-  testCIAction:
+  tests:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    steps:
+      - name: UT step
+        run: echo "Tests OK"
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Docker image build step
+        run: echo "Build OK"
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: [tests, build]
+    if: always()
     steps:
       - name: Hello world action step
         uses: stopa323/h8s-ci@tests
-        id: hello
         with:
           slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
           slackChannel: C01667Y1K8U
-      - name: Some random step
-        run: echo "123"
