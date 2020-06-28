@@ -1,3 +1,4 @@
+
 const { WebClient } = require('@slack/web-api');
 
 const core = require('@actions/core');
@@ -10,7 +11,7 @@ const client = new WebClient(token);
 (async () => {
   const result = await client.chat.postMessage({
     channel: channel,
-    text: 'Build in progress',
+    text: 'Build started',
   });
 
   console.log(`Posted message ${result.ts} to ${channel}`);

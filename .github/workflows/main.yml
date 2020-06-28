@@ -12,7 +12,6 @@ jobs:
         id: hello
         with:
           slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
-          slackChannel: build
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          slackChannel: C01667Y1K8U
+      - name: Some random step
+        run: echo "123"
