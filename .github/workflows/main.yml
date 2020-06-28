@@ -1,12 +1,11 @@
 on: [push]
 
-env:
-  SLACK_MESSAGE_TS: ""
-
 jobs:
   createSlackMessage:
     name: Create CI status Slack message
     runs-on: ubuntu-latest
+    outputs:
+      slackMessageTs: ${{ steps.create_message.outputs.slackMessageTs }}
     steps:
       - name: Create message
         uses: stopa323/h8s-ci@tests
@@ -14,15 +13,11 @@ jobs:
         with:
           slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
           slackChannel: C01667Y1K8U
-      - name: Save message ts
-        run: echo '::set-env name=SLACK_MESSAGE_TS::$VAL'
-        env:
-          VAL: ${{ steps.create_message.outputs.slackMessageTs }}
 
   runTests:
     name: Run pytest
     runs-on: ubuntu-latest
-    needs: [createSlackMessage]
+    needs: createSlackMessage
     steps:
       - name: UT step
         run: echo "Tests OK"
@@ -33,4 +28,4 @@ jobs:
           slackChannel: C01667Y1K8U
           messageUpdate: true
         env:
-          MESSAGE_TS: ${{ env.SLACK_MESSAGE_TS }}
+          MESSAGE_TS: ${{ needs.createSlackMessage.outputs.slackMessageTs }}
