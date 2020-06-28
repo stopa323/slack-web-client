@@ -8,7 +8,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Hello world action step
-        uses: stopa323/h8s-ci
+        uses: stopa323/h8s-ci@tests
         id: hello
         with:
           slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
