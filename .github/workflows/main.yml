@@ -33,4 +33,4 @@ jobs:
           slackChannel: C01667Y1K8U
           messageUpdate: true
         env:
-          MESSAGE_TS: ${{ SLACK_MESSAGE_TS }}
+          MESSAGE_TS: ${{ env.SLACK_MESSAGE_TS }}
