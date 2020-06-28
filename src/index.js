@@ -7,7 +7,7 @@ const channel = core.getInput('slackChannel');
 
 const client = new WebClient(token);
 
-async function postMesage() {
+async function postMessage() {
   const result = await client.chat.postMessage({
     channel: channel,
     text: 'Build started'
