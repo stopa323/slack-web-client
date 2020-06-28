@@ -7,40 +7,30 @@ const channel = core.getInput('slackChannel');
 
 const client = new WebClient(token);
 
-async function pre() {
+async function postMesage() {
   const result = await client.chat.postMessage({
     channel: channel,
-    text: 'pre'
+    text: 'Build started'
   });
-  core.saveState("message.ts", result.ts);
+  core.exportVariable('MESSAGE_TS', result.ts);
 }
 
-async function post() {
-  var ts = core.getState("message.ts");
+async function updateMessage(ts) {
   const result = await client.chat.update({
     channel: channel,
     ts: ts,
-    text: 'post'
+    text: 'Build finished'
   });
-}
-
-async function main() {
-  console.log("I do nothing");
 }
 
 async function run() {
   try {
-      var stage = core.getState("actionStage");
-      if ("main" == stage) {
-        await main();
-        core.saveState("actionStage", "post");
-      }
-      else if ("post" == stage) {
-        await post();
+      var ts = process.env.MESSAGE_TS;
+      if ("" == ts) {
+        await postMessage();
       }
       else {
-        await pre();
-        core.saveState("actionStage", "main");
+        await updateMessage(ts);
       }
   }
   catch (error) {
