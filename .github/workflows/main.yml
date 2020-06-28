@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Slack notify - BEGIN
-        id: begin
         uses: stopa323/h8s-ci@tests
         with:
           slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -18,7 +17,6 @@ jobs:
       - name: Docker image build step
         run: echo "Build OK"
       - name: Slack notify - END
-        id: begin
         uses: stopa323/h8s-ci@tests
         with:
           slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
