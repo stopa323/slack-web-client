@@ -40,7 +40,7 @@ module.exports =
 /******/ 	// the startup function
 /******/ 	function startup() {
 /******/ 		// Load entry module and return exports
-/******/ 		return __webpack_require__(497);
+/******/ 		return __webpack_require__(897);
 /******/ 	};
 /******/
 /******/ 	// run startup
@@ -57,9 +57,8 @@ module.exports = eval("require")("@slack/web-api");
 
 /***/ }),
 
-/***/ 497:
+/***/ 897:
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
-
 
 const { WebClient } = __webpack_require__(292);
 
@@ -71,12 +70,13 @@ const channel = core.getInput('slackChannel');
 const client = new WebClient(token);
 
 (async () => {
-  const result = await client.chat.postMessage({
-    channel: channel,
-    text: 'Build started',
-  });
+  var stage = core.getState("stage");
+  // const result = await client.chat.postMessage({
+  //   channel: channel,
+  //   text: 'Build in progress',
+  // });
 
-  console.log(`Posted message ${result.ts} to ${channel}`);
+  console.log(`Posted message ${stage}`);
 })();
 
 

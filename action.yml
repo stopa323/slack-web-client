@@ -8,6 +8,5 @@ inputs:
     description: Name or ID of the channel where notification will be sent.
 runs:
   using: node12
-  pre: pre.js
-  main: index.js
-  post: post.js
+  pre: dist/index.js
+  main: dist/index.js
