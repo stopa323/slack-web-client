@@ -7,6 +7,12 @@ inputs:
   slackChannel:
     description: Name or ID of the channel where notification will be sent.
     required: true
+  messageUpdate:
+    description: TBD
+    default: false
+outputs:
+  slackMessageTs:
+    description: TBD
 runs:
   using: node12
   main: dist/index.js

@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Slack notify - BEGIN
         uses: stopa323/h8s-ci@tests
+        id: begin
         with:
           slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
           slackChannel: C01667Y1K8U
@@ -21,3 +22,6 @@ jobs:
         with:
           slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
           slackChannel: C01667Y1K8U
+          messageUpdate: true
+        env:
+          MESSAGE_TS: ${{ steps.begin.outputs.slackMessageTs }}

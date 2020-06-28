@@ -5892,31 +5892,32 @@ const channel = core.getInput('slackChannel');
 
 const client = new WebClient(token);
 
-async function postMessage() {
+async function createBuildStatusMessage() {
   const result = await client.chat.postMessage({
     channel: channel,
     text: 'Build started'
   });
-  core.exportVariable('MESSAGE_TS', result.ts);
+  core.setOutput("slackMessageTs", result.ts);
 }
 
-async function updateMessage(ts) {
+async function updateBuildStatusMessage() {
+  console.log(process.env.MESSAGE_TS)
   const result = await client.chat.update({
     channel: channel,
-    ts: ts,
+    ts: process.env.MESSAGE_TS,
     text: 'Build finished'
   });
 }
 
 async function run() {
   try {
-      var ts = process.env.MESSAGE_TS || "";
-      console.log(ts);
-      if ("" == ts) {
-        await postMessage();
+      const isUpdate = core.getInput("messageUpdate");
+      console.log(isUpdate);
+      if (isUpdate) {
+        await updateBuildStatusMessage();
       }
       else {
-        await updateMessage(ts);
+        await createBuildStatusMessage();
       }
   }
   catch (error) {
