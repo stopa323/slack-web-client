@@ -19,7 +19,7 @@ jobs:
             }
       - run: echo $RESULTS
         env:
-          RESULTS: ${{ steps.create_message.outputs.results }}
+          RESULTS: ${{ fromJson(steps.create_message.outputs.results).ts }}
 
   # runTests:
   #   name: Run pytest
