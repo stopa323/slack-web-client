@@ -1,17 +1,20 @@
-name: CI Slack Notify
-description: Post your build information to Slack.
+name: Slack Web API client
+description: TBD
 inputs:
-  slackBotToken:
+  slackToken:
     description: TBD
     required: true
-  slackChannel:
-    description: Name or ID of the channel where notification will be sent.
+  slackAPIMethod:
+    description: |
+      Name of the Slack web-api method to call
     required: true
-  messageUpdate:
+    default: chat.postMessage
+  slackMethodArgs:
     description: TBD
-    default: false
+    required: true
+    default: "{}"
 outputs:
-  slackMessageTs:
+  results:
     description: TBD
 runs:
   using: node12

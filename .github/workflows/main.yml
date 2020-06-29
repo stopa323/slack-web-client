@@ -4,28 +4,36 @@ jobs:
   createSlackMessage:
     name: Create CI status Slack message
     runs-on: ubuntu-latest
-    outputs:
-      slackMessageTs: ${{ steps.create_message.outputs.slackMessageTs }}
+    # outputs:
+    #   slackMessageTs: ${{ steps.create_message.outputs.slackMessageTs }}
     steps:
       - name: Create message
         uses: stopa323/h8s-ci@tests
         id: create_message
         with:
-          slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
-          slackChannel: C01667Y1K8U
-
-  runTests:
-    name: Run pytest
-    runs-on: ubuntu-latest
-    needs: createSlackMessage
-    steps:
-      - name: UT step
-        run: echo "Tests OK"
-      - name: Update message with status
-        uses: stopa323/h8s-ci@tests
-        with:
-          slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
-          slackChannel: C01667Y1K8U
-          messageUpdate: true
+          slackToken: ${{ secrets.SLACK_BOT_TOKEN }}
+          slackMethodArgs: |
+            {
+              "channel": "C01667Y1K8U",
+              "text": "dupa"
+            }
+      - run: echo $RESULTS
         env:
-          MESSAGE_TS: ${{ needs.createSlackMessage.outputs.slackMessageTs }}
+          RESULTS: ${{ steps.create_message.outputs.results }}
+
+  # runTests:
+  #   name: Run pytest
+  #   runs-on: ubuntu-latest
+  #   needs: createSlackMessage
+  #   steps:
+  #     - name: UT step
+  #       run: echo "Tests OK"
+  #     - name: Update message with status
+  #       uses: stopa323/h8s-ci@tests
+  #       with:
+  #         slackBotToken: ${{ secrets.SLACK_BOT_TOKEN }}
+  #         slackChannel: C01667Y1K8U
+  #         messageUpdate: true
+  #         messageContent: "dupa"
+  #       env:
+  #         MESSAGE_TS: ${{ needs.createSlackMessage.outputs.slackMessageTs }}
