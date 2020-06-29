@@ -40,7 +40,7 @@ module.exports =
 /******/ 	// the startup function
 /******/ 	function startup() {
 /******/ 		// Load entry module and return exports
-/******/ 		return __webpack_require__(622);
+/******/ 		return __webpack_require__(897);
 /******/ 	};
 /******/
 /******/ 	// run startup
@@ -254,7 +254,7 @@ module.exports = {"_from":"axios@^0.19.0","_id":"axios@0.19.2","_inBundle":false
  */
 
 var db = __webpack_require__(853)
-var extname = __webpack_require__(277).extname
+var extname = __webpack_require__(622).extname
 
 /**
  * Module variables.
@@ -1462,13 +1462,6 @@ if (true) {
   module.exports = EventEmitter;
 }
 
-
-/***/ }),
-
-/***/ 277:
-/***/ (function(module) {
-
-module.exports = require("path");
 
 /***/ }),
 
@@ -3077,26 +3070,9 @@ module.exports = function enhanceError(error, config, code, request, response) {
 /***/ }),
 
 /***/ 622:
-/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
+/***/ (function(module) {
 
-const { WebClient } = __webpack_require__(132);
-
-const core = __webpack_require__(827);
-
-const token = core.getInput('slackBotToken');
-const channel = core.getInput('slackChannel');
-
-const client = new WebClient(token);
-
-(async () => {
-  const result = await client.chat.postMessage({
-    channel: channel,
-    text: 'Hello world!',
-  });
-
-  console.log(`Successfully send message ${result.ts} in conversation`);
-})();
-
+module.exports = require("path");
 
 /***/ }),
 
@@ -3105,7 +3081,7 @@ const client = new WebClient(token);
 
 var CombinedStream = __webpack_require__(753);
 var util = __webpack_require__(669);
-var path = __webpack_require__(277);
+var path = __webpack_require__(622);
 var http = __webpack_require__(605);
 var https = __webpack_require__(211);
 var parseUrl = __webpack_require__(835).parse;
@@ -5242,7 +5218,7 @@ exports.getLogger = getLogger;
 /***/ 822:
 /***/ (function(module) {
 
-module.exports = {"_from":"@slack/web-api","_id":"@slack/web-api@5.10.0","_inBundle":false,"_integrity":"sha512-t8c2lcSrdX8LIUOS1RvslbBBKvuNaTtbEcrWai4yDGkiNIxzhk+dHPcJzd7A4A0DkAgiEwXeezR7RCELuG8WgQ==","_location":"/@slack/web-api","_phantomChildren":{},"_requested":{"type":"tag","registry":true,"raw":"@slack/web-api","name":"@slack/web-api","escapedName":"@slack%2fweb-api","scope":"@slack","rawSpec":"","saveSpec":null,"fetchSpec":"latest"},"_requiredBy":["#USER","/"],"_resolved":"https://registry.npmjs.org/@slack/web-api/-/web-api-5.10.0.tgz","_shasum":"edc42c95aff4b7838be9c9fec1454aa5ef9990d6","_spec":"@slack/web-api","_where":"/home/bstopa/Projects/hephaestus/h8s-ci","author":{"name":"Slack Technologies, Inc."},"bugs":{"url":"https://github.com/slackapi/node-slack-sdk/issues"},"bundleDependencies":false,"dependencies":{"@slack/logger":">=1.0.0 <3.0.0","@slack/types":"^1.7.0","@types/is-stream":"^1.1.0","@types/node":">=8.9.0","@types/p-queue":"^2.3.2","axios":"^0.19.0","eventemitter3":"^3.1.0","form-data":"^2.5.0","is-stream":"^1.1.0","p-queue":"^2.4.2","p-retry":"^4.0.0"},"deprecated":false,"description":"Official library for using the Slack Platform's Web API","devDependencies":{"@aoberoi/capture-console":"^1.1.0","@types/chai":"^4.1.7","@types/mocha":"^5.2.6","busboy":"^0.3.0","chai":"^4.2.0","codecov":"^3.2.0","mocha":"^6.0.2","nock":"^10.0.6","nyc":"^14.1.1","shelljs":"^0.8.3","shx":"^0.3.2","sinon":"^7.2.7","source-map-support":"^0.5.10","ts-node":"^8.0.3","tslint":"^5.13.1","tslint-config-airbnb":"^5.11.1","typescript":"^3.3.3333"},"engines":{"node":">= 8.9.0","npm":">= 5.5.1"},"files":["dist/**/*"],"homepage":"https://slack.dev/node-slack-sdk/web-api","keywords":["slack","web-api","bot","client","http","api","proxy","rate-limiting","pagination"],"license":"MIT","main":"dist/index.js","name":"@slack/web-api","publishConfig":{"access":"public"},"repository":{"type":"git","url":"git+https://github.com/slackapi/node-slack-sdk.git"},"scripts":{"build":"npm run build:clean && tsc","build:clean":"shx rm -rf ./dist ./coverage ./.nyc_output","coverage":"codecov -F webapi --root=$PWD","lint":"tslint --project .","prepare":"npm run build","test":"npm run build && nyc mocha --config .mocharc.json src/*.spec.js"},"types":"./dist/index.d.ts","version":"5.10.0"};
+module.exports = {"_from":"@slack/web-api@^5.10.0","_id":"@slack/web-api@5.10.0","_inBundle":false,"_integrity":"sha512-t8c2lcSrdX8LIUOS1RvslbBBKvuNaTtbEcrWai4yDGkiNIxzhk+dHPcJzd7A4A0DkAgiEwXeezR7RCELuG8WgQ==","_location":"/@slack/web-api","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"@slack/web-api@^5.10.0","name":"@slack/web-api","escapedName":"@slack%2fweb-api","scope":"@slack","rawSpec":"^5.10.0","saveSpec":null,"fetchSpec":"^5.10.0"},"_requiredBy":["#USER","/"],"_resolved":"https://registry.npmjs.org/@slack/web-api/-/web-api-5.10.0.tgz","_shasum":"edc42c95aff4b7838be9c9fec1454aa5ef9990d6","_spec":"@slack/web-api@^5.10.0","_where":"/home/bstopa/Projects/hephaestus/h8s-ci","author":{"name":"Slack Technologies, Inc."},"bugs":{"url":"https://github.com/slackapi/node-slack-sdk/issues"},"bundleDependencies":false,"dependencies":{"@slack/logger":">=1.0.0 <3.0.0","@slack/types":"^1.7.0","@types/is-stream":"^1.1.0","@types/node":">=8.9.0","@types/p-queue":"^2.3.2","axios":"^0.19.0","eventemitter3":"^3.1.0","form-data":"^2.5.0","is-stream":"^1.1.0","p-queue":"^2.4.2","p-retry":"^4.0.0"},"deprecated":false,"description":"Official library for using the Slack Platform's Web API","devDependencies":{"@aoberoi/capture-console":"^1.1.0","@types/chai":"^4.1.7","@types/mocha":"^5.2.6","busboy":"^0.3.0","chai":"^4.2.0","codecov":"^3.2.0","mocha":"^6.0.2","nock":"^10.0.6","nyc":"^14.1.1","shelljs":"^0.8.3","shx":"^0.3.2","sinon":"^7.2.7","source-map-support":"^0.5.10","ts-node":"^8.0.3","tslint":"^5.13.1","tslint-config-airbnb":"^5.11.1","typescript":"^3.3.3333"},"engines":{"node":">= 8.9.0","npm":">= 5.5.1"},"files":["dist/**/*"],"homepage":"https://slack.dev/node-slack-sdk/web-api","keywords":["slack","web-api","bot","client","http","api","proxy","rate-limiting","pagination"],"license":"MIT","main":"dist/index.js","name":"@slack/web-api","publishConfig":{"access":"public"},"repository":{"type":"git","url":"git+https://github.com/slackapi/node-slack-sdk.git"},"scripts":{"build":"npm run build:clean && tsc","build:clean":"shx rm -rf ./dist ./coverage ./.nyc_output","coverage":"codecov -F webapi --root=$PWD","lint":"tslint --project .","prepare":"npm run build","test":"npm run build && nyc mocha --config .mocharc.json src/*.spec.js"},"types":"./dist/index.d.ts","version":"5.10.0"};
 
 /***/ }),
 
@@ -5270,7 +5246,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const command_1 = __webpack_require__(215);
 const os = __importStar(__webpack_require__(87));
-const path = __importStar(__webpack_require__(277));
+const path = __importStar(__webpack_require__(622));
 /**
  * The code to exit an action
  */
@@ -5904,6 +5880,44 @@ module.exports = require("tty");
 
 /***/ }),
 
+/***/ 897:
+/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
+
+const { WebClient } = __webpack_require__(132);
+
+const core = __webpack_require__(827);
+
+const token = core.getInput('slackToken');
+const client = new WebClient(token);
+
+
+async function run() {
+  try {
+    const args = JSON.parse(core.getInput("slackMethodArgs"));
+    const method = core.getInput("slackAPIMethod").split(".");
+
+    let webAPIMethod = client;
+    method.forEach(methodPart => {
+      if (webAPIMethod[methodPart]) {
+        webAPIMethod = webAPIMethod[methodPart];
+      }
+      else {
+        core.setFailed(`Method '${method}' does not exist`)
+      }
+    })
+    const result = await webAPIMethod(args);
+    core.setOutput("slackMethodResults", result);
+  }
+  catch (error) {
+    core.setFailed(error.message);
+  }
+}
+
+run();
+
+
+/***/ }),
+
 /***/ 908:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
@@ -6182,7 +6196,7 @@ if (Symbol['asyncIterator'] === undefined) {
     (Symbol['asyncIterator']) = Symbol.for('asyncIterator');
 }
 const querystring_1 = __webpack_require__(191);
-const path_1 = __webpack_require__(277);
+const path_1 = __webpack_require__(622);
 const is_stream_1 = __importDefault(__webpack_require__(25));
 const eventemitter3_1 = __webpack_require__(265);
 const p_queue_1 = __importDefault(__webpack_require__(608)); // tslint:disable-line:import-name

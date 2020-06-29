@@ -1,0 +1,38 @@
+on: [push]
+
+jobs:
+  createSlackMessage:
+    name: Create CI status Slack message
+    runs-on: ubuntu-latest
+    outputs:
+      slackMessageTs: ${{ fromJson(steps.create_message.outputs.slackMethodResults).ts }}
+    steps:
+      - name: Create message
+        uses: stopa323/h8s-ci@tests
+        id: create_message
+        with:
+          slackToken: ${{ secrets.SLACK_BOT_TOKEN }}
+          slackMethodArgs: |
+            {
+              "channel": "C01667Y1K8U",
+              "text": "dupa"
+            }
+
+  runTests:
+    name: Run pytest
+    runs-on: ubuntu-latest
+    needs: createSlackMessage
+    steps:
+      - name: UT step
+        run: echo "Tests OK"
+      - name: Update message with status
+        uses: stopa323/h8s-ci@tests
+        with:
+          slackToken: ${{ secrets.SLACK_BOT_TOKEN }}
+          slackAPIMethod: chat.update
+          slackMethodArgs: |
+            {
+              "channel": "C01667Y1K8U",
+              "ts": "${{ needs.createSlackMessage.outputs.slackMessageTs }}",
+              "text": "wieksza dupa"
+            }

@@ -1,11 +1,20 @@
-name: CI Slack Notify
-description: Post your build information to Slack.
+name: Slack Web API client
+description: Provides access to Slack WebAPI
 inputs:
-  slackBotToken:
-    description: TBD
+  slackToken:
+    description: Slack bot user token.
     required: true
-  slackChannel:
-    description: Name or ID of the channel where notification will be sent.
+  slackAPIMethod:
+    description: Name of the Slack web-api method to call
+    required: true
+    default: chat.postMessage
+  slackMethodArgs:
+    description: JSON-formated arguments passed to method
+    required: true
+    default: "{}"
+outputs:
+  slackMethodResults:
+    description: JSON-formated method results
 runs:
-  using: 'node12'
-  pre: 'dist/index.js'
+  using: node12
+  main: dist/index.js
