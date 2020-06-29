@@ -33,8 +33,6 @@ jobs:
           slackMethodArgs: |
             {
               "channel": "C01667Y1K8U",
-              "ts": "$MESSAGE_TS",
+              "ts": "${{ needs.createSlackMessage.outputs.slackMessageTs }}",
               "text": "dupa"
             }
-        env:
-          MESSAGE_TS: ${{ needs.createSlackMessage.outputs.slackMessageTs }}
