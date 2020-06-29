@@ -5890,26 +5890,6 @@ const core = __webpack_require__(827);
 const token = core.getInput('slackToken');
 const client = new WebClient(token);
 
-// async function createBuildStatusMessage() {
-//   console.log("Creating new Slack message");
-//
-//   const result = await client.chat.postMessage({
-//     channel: channel,
-//     text: messageContent
-//   });
-//   console.log(`Setting slackMessageTs to: ${result.ts}`);
-//   core.setOutput("slackMessageTs", result.ts);
-// }
-
-// async function updateBuildStatusMessage() {
-//   console.log(`Updating Slack message: ${process.env.MESSAGE_TS}`);
-//
-//   const result = await client.chat.update({
-//     channel: channel,
-//     ts: process.env.MESSAGE_TS,
-//     text: messageContent
-//   });
-// }
 
 async function run() {
   try {
@@ -5926,8 +5906,7 @@ async function run() {
       }
     })
     const result = await webAPIMethod(args);
-    console.log(result);
-    core.setOutput("results", result);
+    core.setOutput("slackMethodResults", result);
   }
   catch (error) {
     core.setFailed(error.message);

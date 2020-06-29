@@ -14,7 +14,7 @@ inputs:
     required: true
     default: "{}"
 outputs:
-  results:
+  slackMethodResults:
     description: TBD
 runs:
   using: node12
