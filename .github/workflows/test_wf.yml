@@ -34,5 +34,5 @@ jobs:
             {
               "channel": "C01667Y1K8U",
               "ts": "${{ needs.createSlackMessage.outputs.slackMessageTs }}",
-              "text": "dupa"
+              "text": "wieksza dupa"
             }

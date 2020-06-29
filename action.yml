@@ -1,21 +1,20 @@
 name: Slack Web API client
-description: TBD
+description: Provides access to Slack WebAPI
 inputs:
   slackToken:
-    description: TBD
+    description: Slack bot user token.
     required: true
   slackAPIMethod:
-    description: |
-      Name of the Slack web-api method to call
+    description: Name of the Slack web-api method to call
     required: true
     default: chat.postMessage
   slackMethodArgs:
-    description: TBD
+    description: JSON-formated arguments passed to method
     required: true
     default: "{}"
 outputs:
   slackMethodResults:
-    description: TBD
+    description: JSON-formated method results
 runs:
   using: node12
   main: dist/index.js
