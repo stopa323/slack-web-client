@@ -8,7 +8,7 @@ Action requires slack bot token - follow [this](https://api.slack.com/start) ins
 Send a simple text message to a channel.
 ```
 - name: Simple Slack message                    
-  uses: stopa323/slack-web-client@1.0
+  uses: stopa323/slack-web-client@v1.0
   with:
     slackToken: ${{ secrets.SLACK_BOT_TOKEN }}
     slackMethodArgs: |
@@ -24,7 +24,7 @@ The `slackAPIMethod` parameter can be used to change default api method [chat.po
 
 ```
 - name: Update message                   
-  uses: stopa323/slack-web-client@1.0
+  uses: stopa323/slack-web-client@v1.0
   with:
     slackToken: ${{ secrets.SLACK_BOT_TOKEN }}
     slackAPIMethod: chat.update
@@ -46,7 +46,7 @@ jobs:
       slackMessageTs: ${{ fromJson(steps.create_message.outputs.slackMethodResults).ts }}
     steps:
       - name: Create message
-        uses: stopa323/slack-web-client@1.0
+        uses: stopa323/slack-web-client@v1.0
         id: create_message
         with:
           slackToken: ${{ secrets.SLACK_BOT_TOKEN }}
@@ -62,7 +62,7 @@ jobs:
     steps:
       ...
       - name: Update message with status
-        uses: stopa323/slack-web-client@1.0
+        uses: stopa323/slack-web-client@v1.0
         with:
           slackToken: ${{ secrets.SLACK_BOT_TOKEN }}
           slackAPIMethod: chat.update
