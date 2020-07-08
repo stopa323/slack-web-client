@@ -20,7 +20,7 @@ Send a simple text message to a channel.
 
 The `slackMethodArgs` parameter expects a string in the JSON format. 
 
-The `slackAPIMethod` parameter can be used to change default api method [chat.postMessage](https://api.slack.com/methods/chat.postMessage) to any suported by the [`@slack/web-api`](https://slack.dev/node-slack-sdk/web-api) package:
+The `slackAPIMethod` parameter can be used to change default api method [chat.postMessage](https://api.slack.com/methods/chat.postMessage) to any supported by the [`@slack/web-api`](https://slack.dev/node-slack-sdk/web-api) package:
 
 ```
 - name: Update message                   
